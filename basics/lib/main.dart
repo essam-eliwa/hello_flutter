@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import './question.dart';
+import './QuizTitle.dart';
+
 // void main() {
 //   runApp(MyApp());
 // }
@@ -12,32 +15,35 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var questionIndex = 0;
+  var _questionIndex = 0;
+
+  var _questions = [
+    'What\'s your favorite \n football team?',
+    'What\'s your favorite sport?',
+    'What\'s your favorite color?',
+    'What\'s your favorite pet?',
+  ];
 
   void answerQuestion() {
     setState(() {
-      questionIndex = (questionIndex + 1) % 2;
+      _questionIndex = (_questionIndex + 1) % _questions.length;
     });
-    print(questionIndex);
+    print(_questionIndex);
   }
 
   @override
   Widget build(BuildContext context) {
-    var questions = [
-      'What\'s your favorite color?',
-      'What\'s your favorite animal?',
-    ];
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text('My First App'),
+          title: Text('Question & Answers'),
         ),
         body: Center(
           child: Column(
-            children: [
-              Text(
-                questions[questionIndex],
-              ),
+            children: <Widget>[
+              QuizTitle(),
+              Question(_questions[_questionIndex]),
               RaisedButton(
                 child: Text('Answer 1'),
                 onPressed: answerQuestion,
