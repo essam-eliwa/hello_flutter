@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:english_words/english_words.dart';
 
 import './question.dart';
 import './QuizTitle.dart';
@@ -53,7 +56,7 @@ class _MyAppState extends State<MyApp> {
                 onPressed: () => print('Answer 2 chosen!'),
               ),
               RaisedButton(
-                child: Text('Answer 3'),
+                child: Text(nouns.take(1000).elementAt(Random().nextInt(999))),
                 onPressed: () {
                   // ...
                   print('Answer 3 chosen');
